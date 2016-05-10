@@ -33,6 +33,7 @@ class tftp (
   $package    = $tftp::params::package,
   $binary     = $tftp::params::binary,
   $defaults   = $tftp::params::defaults,
+  $provider   = $ftpd::params::provider,
 ) inherits tftp::params {
   $virtual_package = 'tftpd-hpa'
 
@@ -85,7 +86,7 @@ class tftp (
   service { 'tftpd-hpa':
     ensure    => $svc_ensure,
     enable    => $svc_enable,
-    provider  => $tftp::params::provider,
+    provider  => $provider,
     hasstatus => $tftp::params::hasstatus,
     pattern   => '/usr/sbin/in.tftpd',
     start     => $start,
